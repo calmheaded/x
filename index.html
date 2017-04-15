@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>my music record(xiao)</title>
+	<link rel="stylesheet" href="css/reset.css" type="text/css">
+	<style>
+		@charset "utf-8";
+		html {
+			font-size: 625%;
+		}
+		#header{background: #1E63C2;height: 35px; box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3); width: 100%; }
+		#header h1 { position: relative;   }		
+		#header h1 title{ line-height: 35px; height: 35px; color: #fff; display: inline-block; position: absolute; left: 30%;font-size: 17px;  font-family:"Microsoft YaHei";  letter-spacing: 2px; cursor: pointer;}
+		#header span{ display: block; height: 35px;line-height: 35px;  font-size: 13px; right: 8px; position: absolute;color: #fff; }
+		#header span img{ width: 6px; height: 10px; display: inline-block; }
+		#header a{position: absolute;left: 5px; top:10px;}
+		#header a img{width: 15px; height: 15px;}
+		/*container*/
+		#container{ width: 100%;max-width: 6.4rem; margin: 0 auto;}
+		
+		
+		/*topMenu*/
+		 #topMenu { margin-left: 1px; height: auto; min-height: 60px; background: #E0ECFF; }
+		 #topMenu ul{ margin-top: 2px; padding: 1px; padding-left: 2px;  }
+		 #topMenu li{ width:24.2%; height: 17px; line-height: 17px; background:#1E7ED1; color: #fff; text-indent: 1px; font-size: 9px; border: 1px solid #fff; /*display: flex;display: -webkit-flex;flex-direction:row;flex-wrap: nowrap;justify-content:space-around;*/ float: left;cursor: pointer; }
+		#topMenu li:hover{ background: #1F5FBE; }
+		/*contain*/
+		#contain{background: #E0ECFF; height: 200px; margin-top: 2px; padding: 0;}
+		/*音频*/
+		audio{ display: block; width: 98%; margin: 1px auto;}
+		/*sidebar*/
+		#sidebar{ position: absolute; background:#1E7ED1; top: 38px;bottom: 0; width: 35%; left: -35%; }
+		#sidebar h2{ height: 26px; line-height: 26px;  color: #fff; font-size: 14px;border-bottom: 1px solid #FFFFFF;text-indent: 25px; background:#1E63C2; }
+		#sidebar h2 span{ display: inline-block; right: 3px; top: 8px; position: absolute; }
+		#sidebar h2 span img{width: 15px; height: 15px;}
+		#sidebar ul{ border-bottom: 1px solid #FFFFFF; }
+		#sidebar ul li{ height: 20px;line-height: 20px; border-bottom: 1px solid #FFFFFF; color: #fff; text-indent: 5px; font-size: 13px;overflow: hidden; white-space: nowrap; -o-text-overflow: ellipsis; text-overflow: ellipsis; cursor: pointer;  }
+		#sidebar li:hover{ background: #1E63C2; }
+	</style>
+	<script src="js/jquery-1.10.1.js"></script>
+	<script>
+		$(function(){
+			$('#show-sidebar').on('click',function(){								
+				$('#sidebar').animate({'left':0},300,function(){
+				});
+			});
+			// mask
+			$('#sidebar span').on('click',function(){
+				$('.mask').fadeOut();
+				$('#sidebar').animate({'left':'-35%'},300,function(){					 
+				});
+			});
+
+			$('#sidebar li').click(function(){
+				$('#sidebar').animate({'left':'-35%'},800,function(){					 
+				});	
+			});
+		});
+	</script>
+</head>
+<body>
+	<header id="header">
+		<h1><a href="javascrpt:;"> <img id="show-sidebar"  src="img/menu.png" alt="展开"></a><title>我的录音</title></h1>
+		<span id="timer">
+			<img src="img/0.png" />
+			<img src="img/0.png" />
+			:
+			<img src="img/0.png" />
+			<img src="img/0.png" />
+			:
+			<img src="img/0.png" />
+			<img src="img/0.png" />
+			</span>	
+		<script>
+			function toDou(n)
+			{
+				if(n<10)
+				{
+					return '0'+n;
+				}
+				else
+				{
+					return ''+n;
+				}
+			}
+
+			window.onload=function ()
+			{	
+				function tick(){
+				var aImg=$('#timer').children('img');
+				var oDate=new Date();
+				
+				var str=toDou(oDate.getHours())+toDou(oDate.getMinutes())+toDou(oDate.getSeconds());
+				
+				for(var i=0;i<aImg.length;i++)
+				{
+					aImg[i].src='img/'+str[i]+'.png';
+				}	
+			}
+			tick();
+			 setInterval(tick, 1000);
+			};
+</script>	
+	</header>
+	<div id="container">
+		<div id="topMenu">
+			<ul>
+				<li>问</li>
+				<li>依然爱你</li>
+				<li>演员</li>
+				<li>人质</li>
+				<li>过期爱情</li>						
+				<li>愿得一人心</li>				
+				<li>独家记忆</li>							
+				<li>说谎</li>				
+			</ul>
+		</div>
+		<script>
+		$(function(){
+			$('#topMenu').find('li').eq(0).click(function(){
+			$('audio').attr('src','data/问.3gpp');
+			$('#header title').text('问');
+			});
+			// 
+			$('#topMenu').find('li').eq(1).click(function(){
+			$('audio').attr('src','data/依然爱你.3gpp');
+			$('#header title').text('依然爱你');
+			});
+			// 
+			$('#topMenu').find('li').eq(2).click(function(){
+			$('audio').attr('src','data/演员.3gpp');
+			$('#header title').text('演员');
+			});
+			// 
+			$('#topMenu').find('li').eq(3).click(function(){
+			$('audio').attr('src','data/人质.3gpp');
+			$('#header title').text('人质');
+			});
+			// 
+			$('#topMenu').find('li').eq(4).click(function(){
+			$('audio').attr('src','data/过期爱情.3gpp');
+			$('#header title').text('过期爱情');
+			});
+			// 
+			
+			$('#topMenu').find('li').eq(5).click(function(){
+			$('audio').attr('src','data/愿得一人心.3gpp');
+			$('#header title').text('愿得一人心');
+			});
+			// 
+			$('#topMenu').find('li').eq(6).click(function(){
+			$('audio').attr('src','data/独家记忆.3gpp');
+			$('#header title').text('独家记忆');
+			});
+			// 			
+			$('#topMenu').find('li').eq(7).click(function(){
+			$('audio').attr('src','data/说谎.3gpp');
+			$('#header title').text('说谎');
+			});
+
+		});	
+		</script>
+		<div id="contain">
+			<audio src="data/问.3gpp" controls="controls" >
+			您的老牛已经拉不动破车了，赶紧换了吧，想听中国好声音么？
+			</audio>
+			<!--  -->
+			
+		</div>
+		
+	</div>
+	<div class="mask"></div>
+	<div id="sidebar">
+	<h2>录音 <span><img src="img/close.png" alt=""></span></h2>
+		<ul>
+			<li>2016年</li>
+			<li>2017年</li>			
+			<li>2010年原创</li>			
+		</ul>
+	
+	</div>
+	<script>
+		$(function(){
+			$('#sidebar').find('li').eq(0).click(function(){
+				$('#topMenu').html('<ul><li>问</li><li>依然爱你</li><li>演员</li><li>人质</li><li>过期爱情</li>	<li>愿得一人心</li>	<li>独家记忆</li><li>说谎</li></ul>');
+			});
+			$('#sidebar').find('li').eq(1).click(function(){
+				$('#topMenu').html('<ul><li>丑八怪</li><li>可以了</li><li>方圆几里</li><li>你是我的唯一</li></ul>');
+			});
+		});
+
+	</script>
+</body>
+</html>
