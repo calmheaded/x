@@ -1,8 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<title>my music record(xiao)</title>
 	<link rel="stylesheet" href="css/reset.css" type="text/css">
 	<style>
@@ -27,7 +27,7 @@
 		 #topMenu li{ width:24.2%; height: 17px; line-height: 17px; background:#1E7ED1; color: #fff; text-indent: 1px; font-size: 9px; border: 1px solid #fff; /*display: flex;display: -webkit-flex;flex-direction:row;flex-wrap: nowrap;justify-content:space-around;*/ float: left;cursor: pointer; }
 		#topMenu li:hover{ background: #1F5FBE; }
 		/*contain*/
-		#contain{background: #E0ECFF; height: 200px; margin-top: 2px; padding: 0;}
+		#contain{background: #E0ECFF;  margin-top: 2px; padding: 0;}
 		/*音频*/
 		audio{ display: block; width: 98%; margin: 1px auto;}
 		/*sidebar*/
@@ -38,6 +38,29 @@
 		#sidebar ul{ border-bottom: 1px solid #FFFFFF; }
 		#sidebar ul li{ height: 20px;line-height: 20px; border-bottom: 1px solid #FFFFFF; color: #fff; text-indent: 5px; font-size: 13px;overflow: hidden; white-space: nowrap; -o-text-overflow: ellipsis; text-overflow: ellipsis; cursor: pointer;  }
 		#sidebar li:hover{ background: #1E63C2; }
+
+#contain{background: #E0ECFF;  margin-top: 2px; padding: 0; position: relative;}
+
+		/**/
+	 #canvasZone { 
+			 position: absolute; top:100px;
+			 bottom: 0; 
+			 
+
+        }  
+ 
+        #myCanvas {  
+         
+         	height: 100%;
+            width: 100%;
+
+       
+        }  
+       
+
+	#code{ width: 99%;height: 300px;color:font-family:"Consolas","Monaco","Bitstream Vera Sans Mono","Courier New","sans-serif";font-size:11px; z-index: 999;   }
+	#code 
+	
 	</style>
 	<script src="js/jquery-1.10.1.js"></script>
 	<script>
@@ -62,7 +85,7 @@
 </head>
 <body>
 	<header id="header">
-		<h1><a href="javascrpt:;"> <img id="show-sidebar"  src="img/menu.png" alt="展开"></a><title>我的录音</title></h1>
+		<h1><a href="javascrpt:;"> <img id="show-sidebar"  src="img/menu.png" alt="展开"></a><title>哈哈</title></h1>
 		<span id="timer">
 			<img src="img/0.png" />
 			<img src="img/0.png" />
@@ -74,29 +97,30 @@
 			<img src="img/0.png" />
 			</span>	
 		<script>
-			function toDou(n)
+			function toDou(m)
 			{
-				if(n<10)
+				if(m<10)
 				{
-					return '0'+n;
+					return '0'+m;
 				}
 				else
 				{
-					return ''+n;
+					return ''+m;
 				}
 			}
 
 			window.onload=function ()
 			{	
+
 				function tick(){
 				var aImg=$('#timer').children('img');
 				var oDate=new Date();
 				
 				var str=toDou(oDate.getHours())+toDou(oDate.getMinutes())+toDou(oDate.getSeconds());
 				
-				for(var i=0;i<aImg.length;i++)
+				for(var j=0;j<aImg.length;j++)
 				{
-					aImg[i].src='img/'+str[i]+'.png';
+					aImg[j].src='img/'+str[j]+'.png';
 				}	
 			}
 			tick();
@@ -167,9 +191,118 @@
 			您的老牛已经拉不动破车了，赶紧换了吧，想听中国好声音么？
 			</audio>
 			<!--  -->
-			
+			<div id="canvasZone">  
+        		<canvas id="myCanvas"></canvas>  
+    			</div> 
+			<div  id="code">
+				
+				<span>$.fn.typewriter = function() {</span><br>
+				<span>this.each(function() {</span><br>
+				<span>var $ele = $(this), str = $ele.html(), progress = 0;</span><br>
+				<span>$ele.html('');</span><br>
+				<span>var timer = setInterval(function() {</span><br>
+				<span>var current = str.substr(progress, 1);</span><br>
+				<span>if (current == '<') {</span><br>
+				<span>progress = str.indexOf('>', progress) + 1;</span><br>
+				<span>} else {</span><br>
+				<span>progress++;</span><br>
+				<span>}</span><br>
+				<span>$ele.html(str.substring(0, progress) + (progress & 1 ? '_' : ''));</span><br>
+				<span>if (progress >= str.length) {</span><br>
+				<span>clearInterval(timer);</span><br>
+				<span>}, 75);</span><br>
+				<span>	});</span><br>
+				<span>return this;</span><br>
+				<span>	};</span><br>
+				<span>})(jQuery);</span><br>
+				<span>$("#code").typewriter();</span><br>
+				
+    			</div>
+	 
 		</div>
-		
+		<script>
+			(function($) {
+	$.fn.typewriter = function() {
+		this.each(function() {
+			var $ele = $(this), str = $ele.html(), progress = 0;
+			$ele.html('');
+			var timer = setInterval(function() {
+				var current = str.substr(progress, 1);
+				if (current == '<') {
+					progress = str.indexOf('>', progress) + 1;
+				} else {
+					progress++;
+				}
+				$ele.html(str.substring(0, progress) + (progress & 1 ? '_' : ''));
+				if (progress >= str.length) {
+					clearInterval(timer);
+				}
+			}, 75);
+			
+		});
+		return this;
+
+	
+	};
+
+})(jQuery);
+$("#code").typewriter();
+		</script>
+
+		 <script type="text/javascript">  
+        var arr = [];//保存所有的XY坐标，只为验证。实际程序中可删除。  
+        var r = 4;  
+        var radian;//弧度  
+        var i;  
+        var radianDecrement;//弧度增量  
+        var time = 100;//每个点之间的时间间隔  
+        var intervalId;  
+        var num = 360;//分割为 360 个点  
+        var startRadian = Math.PI;  
+        var ctx;  
+       
+            startAnimation();  
+  
+        function startAnimation() {  
+            ctx = document.getElementById("myCanvas").getContext("2d");  
+            //让画布撑满整个屏幕，-20是滚动条的位置，需留出。如滚动条出现则会挤压画布。  
+            WINDOW_HEIGHT=document.documentElement.clientHeight-20;  
+            WINDOW_WIDTH=document.documentElement.clientWidth-20;  
+            ctx.width = WINDOW_WIDTH;  
+            ctx.heigh = WINDOW_HEIGHT;  
+            drawHeart();  
+        }  
+  
+        function drawHeart() {  
+  
+            ctx.strokeStyle = "red";  
+            ctx.lineWidth = 3;//设置线的宽度  
+            radian = startRadian;//弧度设为初始弧度  
+            radianDecrement = Math.PI / num * 2;  
+            ctx.moveTo(getX(radian), getY(radian));//移动到初始点  
+            i = 0;  
+            intervalId = setInterval("printHeart()", time);  
+        }  
+        //x = 16 sin^3 t, y = (13 cos t - 5 cos 2t - 2 cos 3t - cos 4t)  
+        function printHeart() {  
+            radian += radianDecrement;  
+            ctx.lineTo(getX(radian), getY(radian));//在旧点和新点之间连线  
+            // arr.push("X:" + getX(radian) + "<br/>Y:" + getY(radian) + "<br/>");  
+            i++;  
+            ctx.stroke();//画线  
+            if (i >= num) {  
+                clearInterval(intervalId);  
+                // document.getElementById("bs").innerHTML = arr.join("");//打印所有的XY坐标点。  
+            }  
+        }  
+        function getX(t) {//由弧度得到 X 坐标  
+            return 150 + r * (16 * Math.pow(Math.sin(t), 3));  
+        }  
+  
+        function getY(t) {//由弧度得到 Y 坐标  
+            return 50 - r * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));  
+        }  
+    </script>   
 	</div>
 	<div class="mask"></div>
 	<div id="sidebar">
@@ -185,6 +318,48 @@
 		$(function(){
 			$('#sidebar').find('li').eq(0).click(function(){
 				$('#topMenu').html('<ul><li>问</li><li>依然爱你</li><li>演员</li><li>人质</li><li>过期爱情</li>	<li>愿得一人心</li>	<li>独家记忆</li><li>说谎</li></ul>');
+
+				$('#topMenu').find('li').eq(0).click(function(){
+			$('audio').attr('src','data/问.3gpp');
+			$('#header title').text('问');
+			});
+			// 
+			$('#topMenu').find('li').eq(1).click(function(){
+			$('audio').attr('src','data/依然爱你.3gpp');
+			$('#header title').text('依然爱你');
+			});
+			// 
+			$('#topMenu').find('li').eq(2).click(function(){
+			$('audio').attr('src','data/演员.3gpp');
+			$('#header title').text('演员');
+			});
+			// 
+			$('#topMenu').find('li').eq(3).click(function(){
+			$('audio').attr('src','data/人质.3gpp');
+			$('#header title').text('人质');
+			});
+			// 
+			$('#topMenu').find('li').eq(4).click(function(){
+			$('audio').attr('src','data/过期爱情.3gpp');
+			$('#header title').text('过期爱情');
+			});
+			// 
+			
+			$('#topMenu').find('li').eq(5).click(function(){
+			$('audio').attr('src','data/愿得一人心.3gpp');
+			$('#header title').text('愿得一人心');
+			});
+			// 
+			$('#topMenu').find('li').eq(6).click(function(){
+			$('audio').attr('src','data/独家记忆.3gpp');
+			$('#header title').text('独家记忆');
+			});
+			// 			
+			$('#topMenu').find('li').eq(7).click(function(){
+			$('audio').attr('src','data/说谎.3gpp');
+			$('#header title').text('说谎');
+			});
+	
 			});
 			$('#sidebar').find('li').eq(1).click(function(){
 				$('#topMenu').html('<ul><li>丑八怪</li><li>可以了</li><li>方圆几里</li><li>你是我的唯一</li></ul>');
